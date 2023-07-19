@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# React Phonebook Application
+This application includes components built with React to create a simple phonebook application. The app allows users to list contacts, add new contacts, and filter contacts based on the entered text.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Components
 
-## Available Scripts
+### List Component
 
-In the project directory, you can run:
+This component provides an interface to display contacts and offers the option to filter them.
 
-### `yarn start`
+- It receives the list of contacts through the `contacts` prop, which is passed down from the parent component `Contact`.
+- The component defines a state variable called `filterText`, which holds the text entered by the user and is used for filtering contacts.
+- To filter contacts, it creates a new variable called `filtered`. This variable filters contacts that contain any property with the text specified in `filterText`, and adds them to the `filtered` array.
+- The filtering method iterates through all the properties of each contact and returns the contact if any property contains the lowercase version of `filterText`. This allows case-insensitive matching of contacts.
+- The component returns an HTML form that displays contacts from the `filtered` array.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Contacts Component
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This main component holds the overall structure of the application and combines other components together.
 
-### `yarn test`
+- It defines a state variable called contacts to store the list of ``contacts`` and initializes it with sample contacts.
+- The component uses the ``useEffect`` hook to track changes in the ``contacts`` state and logs the state to the console whenever it changes. This helps to monitor updates to the contacts state.
+- The component returns an HTML structure containing page title and components ``Form`` and ``List``.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Form Component
 
-### `yarn build`
+This component presents a form to add new contacts.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- The ``addcontact`` prop is used to add new contacts, which is passed from the parent component ``Contacts``.
+- The ``contacts`` prop is used within the ``useEffect`` hook to reset the form whenever the ``contacts`` state changes.
+- It defines a state variable called ``form``, which stores the contact information entered by the user.
+- The ``onChangeInput`` function is called whenever a value changes in any input field, and it updates the ``form`` state accordingly.
+- The ``onSubmit`` function is executed when the form is submitted and adds a new contact to the ``contacts`` state.
+- The component returns an HTML form with ``<input>`` fields for name and phone number, and a ``"Add Contact"`` button.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This is a simple phonebook application demonstrating how to develop a user interface, manage state, and communicate between components using React...
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# React Telefon Rehberi Uygulaması
 
-### `yarn eject`
+Bu uygulama, React kullanarak basit bir telefon rehberi uygulaması yapmak için kullanılan bileşenleri içerir. Uygulama, kullanıcılara iletişimleri listeleme, yeni iletişim ekleyebilme ve iletişimleri filtreleme imkanı sağlar.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Bileşenler
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### List Bileşeni
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Bu bileşen, iletişimleri listeleyen bir arayüz sunar ve ayrıca kullanıcılara iletişimleri filtreleme seçeneği sağlar.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `contacts` prop'u aracılığıyla, ana bileşen olan `Contacts` tarafından iletilen iletişim listesini alır.
+- `filterText` adında bir state değişkeni tanımlanır, bu değişken kullanıcı tarafından girilen metni tutar ve iletişimleri filtrelemek için kullanılır.
+- İletişimleri filtrelemek için `filtered` adında yeni bir değişken tanımlanır. `filterText` içeren herhangi bir özelliği olan iletişimleri bulur ve bunları `filtered` dizisine ekler.
+- Filtreleme metodu, her iletişimdeki tüm özellikleri döner ve içerisinde `filterText`in küçük harfli halini içeriyorsa bu iletişimi döndürür. Böylece, büyük/küçük harf duyarlılığını dikkate almaksızın eşleşen iletişimleri gösterir.
+- Sonuç olarak, `filtered` dizisindeki iletişimleri listeleyen bir HTML formu döndürür.
 
-## Learn More
+### Contacts Bileşeni
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Bu ana bileşen, uygulamanın genel yapılandırmasını içerir ve diğer bileşenleri bir araya getirir.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- İletişimleri tutmak için bir state değişkeni olan `contacts` tanımlanır ve örnek iletişimlerle başlatılır.
+- Bileşen, `useEffect` kancasını kullanarak `contacts` state'ini takip eder ve her değiştiğinde bu durumu konsola basar. Bu, `contacts` state'inin güncellenmesini izlemeye yarar.
+- Sayfa başlığı ve `Form` ile `List` bileşenlerini içeren bir HTML yapı döndürür.
 
-### Code Splitting
+### Form Bileşeni
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Bu bileşen, yeni iletişimleri eklemek için bir form sunar.
 
-### Analyzing the Bundle Size
+- `addcontact` prop'u, yeni iletişimlerin ana bileşen olan `Contacts` tarafından eklenmesi için kullanılır.
+- `contacts` prop'u, `useEffect` kancasında kullanılarak, `contacts` state'i değiştiğinde formun sıfırlanmasına yardımcı olur.
+- `form` adında bir state değişkeni tanımlanır ve bu değişken, kullanıcı tarafından girilen iletişim bilgilerini tutar.
+- `onChangeInput` fonksiyonu, herhangi bir giriş alanında bir değer değiştiğinde çağrılır ve `form` state'ini günceller.
+- `onSubmit` fonksiyonu, form gönderildiğinde çalışır ve yeni bir iletişimi `contacts` state'ine ekler.
+- İsim ve telefon numarası girişi için iki adet `<input>` elemanı ve bir ``"Add Contact"`` düğmesi içeren bir HTML formu döndürür.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Bu, basit bir telefon rehberi uygulamasıdır. Proje, kullanıcı arayüzünü geliştirme, state yönetimi ve bileşenler arasında iletişim kurma becerilerini göstermektedir.
